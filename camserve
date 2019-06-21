@@ -12,8 +12,8 @@ cam = None
 class MainHandler(web.RequestHandler):
 
     def get(self):
-        height = self.param('height', 480)
-        width  = self.param('width', 640)
+        height = self.param('h', 480)
+        width  = self.param('w', 640)
         self.set_header("Content-Type", "image/png")
         response = self.capture(height, width)
         self.write(response.tobytes())
