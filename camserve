@@ -29,7 +29,7 @@ class MainHandler(web.RequestHandler):
     def capture(self, height, width):
         cam.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
         cam.set(cv2.CAP_PROP_FRAME_WIDTH, width)
-        print('Image served HxW: {}x{}'.format(height, width))
+        print('Image served WxH: {}x{}'.format(width, height))
         sucs, frame = cam.read()
         _, buf = cv2.imencode('.png', frame)
         return buf
