@@ -7,13 +7,6 @@ Serve camera images over network
 from tornado import ioloop, web
 import cv2
 
-from jinja2 import Environment, FileSystemLoader, select_autoescape
-env = Environment(
-    loader=FileSystemLoader('./'),
-    autoescape=select_autoescape(['html', 'xml']))
-
-template = env.get_template('template.html')
-
 cam = None
 
 class MainHandler(web.RequestHandler):
@@ -36,7 +29,6 @@ class MainHandler(web.RequestHandler):
     def capture(self, height, width):
         cam.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
         cam.set(cv2.CAP_PROP_FRAME_WIDTH, width)
-        print('{}x{}'.format(width, height))
         sucs, frame = cam.read()
         _, buf = cv2.imencode('.png', frame)
         return buf
@@ -45,11 +37,10 @@ def make_app():
     global cam
     cam = cv2.VideoCapture(0)
     return web.Application([
-        (r"/.*", MainHandler),
+        (r"/_image.*", MainHandler),
     ])
 
 if __name__ == "__main__":
     app = make_app()
     app.listen(8080)
     ioloop.IOLoop.current().start()
-

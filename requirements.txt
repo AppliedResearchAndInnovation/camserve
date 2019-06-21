@@ -1,3 +1,2 @@
 tornado
 opencv-python
-Jinja2
