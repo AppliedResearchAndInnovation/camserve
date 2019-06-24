@@ -10,7 +10,6 @@ import cv2
 cam = None
 
 class MainHandler(web.RequestHandler):
-
     def get(self):
         height = self.param('h', 480)
         width  = self.param('w', 640)
