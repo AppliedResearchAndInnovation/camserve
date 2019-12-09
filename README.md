@@ -38,8 +38,8 @@ combinations of height and width may not work. Unspecified dimensions default to
 640 (height) and 480 (width). Examples (assuming device is at sbc.example.com):
 
 ```sh
-curl -o image.png sbc.example.com/_image
-curl -o image.png sbc.example.com/_image?w=640&h=480
+curl -o image.png sbc.example.com:8080/_image
+curl -o image.png sbc.example.com:8080/_image?w=640&h=480
 ```
 
 ## License
